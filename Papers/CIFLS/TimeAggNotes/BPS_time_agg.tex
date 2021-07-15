@@ -1,0 +1,99 @@
+\documentclass[]{article}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+\section{Defnition in Continuous Time}
+The permanent component of wages follows a martingale $P_{i,t}$ for $i \in \{1,2\}$ \\
+The transitory component of wages consists of a shocks that persist for a period of time $a$, so that at time $t$ the transitory component of wages is $\frac{1}{a}\int_{t-a}^t dQ_{i,t}$. \\
+\section{Mapping Observable Changes in Continuous Time}
+In discrete time:
+\begin{align*}
+\Delta c_t & \approx \kappa_{c, u_1} \Delta u_{1,t} + \kappa_{c, u_2} \Delta u_{2,t} + \kappa_{c, v_1} v_{1,t} + \kappa_{c, v_2} v_{2,t} \\
+\Delta h_{1,t} &  \approx \kappa_{h_1, u_1} \Delta u_{1,t} + \kappa_{h_1, u_2} \Delta u_{2,t} + \kappa_{h_1, v_1} v_{1,t} + \kappa_{h_1, v_2} v_{2,t} \\
+\Delta h_{2,t} &  \approx \kappa_{h_2, u_1} \Delta u_{1,t} + \kappa_{h_2, u_2} \Delta u_{2,t} + \kappa_{h_2, v_1} v_{1,t} + \kappa_{h_2, v_2} v_{2,t}
+\end{align*}
+In continuous time replace $\Delta u_{i,t}$ with $\frac{1}{a} \left( \int_{t-a}^t dQ_{i,s}  -  \int_{t-2-a}^{t-2} dQ_{i,s} \right)$ \\
+and replace $ v_{i,t}$ with $\int_{t-2}^t dP_{i,t}$.
+Which translates to the continuous time model above as:
+\begin{align*}
+\Delta c_t&  \approx \kappa_{c, u_1} \frac{1}{a}\left( \int_{t-a}^t dQ_{1,s}  -  \int_{t-2-a}^{t-2} dQ_{1,s} \right)+ \kappa_{c, u_2} \frac{1}{a}\left( \int_{t-a}^t dQ_{2,s}  -  \int_{t-2-a}^{t-2} dQ_{2,s} \right) \\
+& \qquad \qquad + \kappa_{c, v_1}\int_{t-2}^t dP_{1,t} + \kappa_{c, v_2}\int_{t-2}^t dP_{2,t}\\
+\Delta h_{1,t} & \approx \kappa_{h_1, u_1}  \frac{1}{a}\left( \int_{t-a}^t dQ_{1,s}  -  \int_{t-2-a}^{t-2} dQ_{1,s} \right) + \kappa_{h_1, u_2} \frac{1}{a}\left( \int_{t-a}^t dQ_{2,s}  -  \int_{t-2-a}^{t-2} dQ_{2,s} \right) \\
+& \qquad \qquad + \kappa_{h_1, v_1}\int_{t-2}^t dP_{1,t} + \kappa_{h_1, v_2} \int_{t-2}^t dP_{2,t} \\
+\Delta h_{2,t} & \approx \kappa_{h_2, u_1} \frac{1}{a}\left( \int_{t-a}^t dQ_{1,s}  -  \int_{t-2-a}^{t-2} dQ_{1,s} \right) + \kappa_{h_2, u_2}  \frac{1}{a}\left( \int_{t-a}^t dQ_{2,s}  -  \int_{t-2-a}^{t-2} dQ_{2,s} \right) \\
+& \qquad \qquad + \kappa_{h_2, v_1}\int_{t-2}^t dP_{1,t} + \kappa_{h_2, v_2} \int_{t-2}^t dP_{2,t}
+\end{align*}
+However, we do not observe this snapshot at time $t$ (except for consumption), instead we observe:
+\begin{align*}
+\Delta c^{obs}_T & = \Delta c_T \\
+\Delta h^{obs}_{i,T} & = \int_{T-1}^T \Delta h_{i,t} dt
+\end{align*}
+Define for transitory shocks:
+\begin{align*}
+\Delta \mathcal{Q}_{i,T} &=  \frac{1}{a}\left( \int_{T-a}^T dQ_{i,s}  -  \int_{T-2-a}^{T-2} dQ_{i,s} \right)\\
+\overline{\Delta \mathcal{Q}}_{i,T} &= \int_{T-1}^T \Delta \mathcal{Q}_{i,s} ds \\
+&=  \int_{T-1-a}^{T-1}\frac{ s-(T-1-a) }{a} dQ_{i,s} +  \int_{T-1}^{T-a} dQ_{i,s} +  \int_{T-a}^T \frac{T-s}{a} dQ_{i,s} \\
+& \ - \int_{T-3-a}^{T-3}\frac{ s-(T-3-a) }{a} dQ_{i,s} -  \int_{T-3}^{T-2-a} dQ_{i,s} -  \int_{T-2-a}^{T-2} \frac{T-2-s}{a} dQ_{i,s} 
+\end{align*}
+and for permanent shocks:
+\begin{align*}
+\Delta \mathcal{P}_{i,T} &=  \int_{T-2}^T dP_{i,s}  \\
+\overline{\Delta \mathcal{P}}_{i,T} &=   \int_{T-1}^T \Delta \mathcal{P}_{i,s} ds \\
+&= \int_{T-3}^{T-2} (s-(T-3))dP_{i,s} + \int_{T-2}^{T-1} dP_{i,s}  + \int_{T-1}^{T} (T-s)dP_{i,s} 
+\end{align*}
+then
+\begin{align*}
+\Delta c^{obs}_{i,T} & = \Delta c_{i,T}  \\
+ &  \approx \ \kappa_{c, u_1}\Delta \mathcal{Q}_{1,T} 
+ + \kappa_{c, u_2}\Delta \mathcal{Q}_{2,T} \\
+& \ \ + \kappa_{c, v_1}\Delta \mathcal{P}_{1,T}
++ \kappa_{c, v_2}\Delta \mathcal{P}_{2,T}
+\end{align*}
+and
+\begin{align*}
+\Delta h^{obs}_{i,T} & = \int_{T-1}^T \Delta h_{i,t} dt \\
+ &  \approx \ \kappa_{h_i, u_1}\overline{\Delta \mathcal{Q}}_{1,T} 
+ + \kappa_{h_i, u_2}\overline{\Delta \mathcal{Q}}_{2,T} \\
+& \ \ + \kappa_{h_i, v_1}\overline{\Delta \mathcal{P}}_{1,T}
++ \kappa_{h_i, v_2}\overline{\Delta \mathcal{P}}_{2,T}
+\end{align*}
+furthermore
+\begin{align*}
+\Delta w^{obs}_{i,T} & = \int_{T-1}^T \Delta w_{i,t} dt \\
+ &  \approx \overline{\Delta \mathcal{Q}}_{i,T} 
++ \overline{\Delta \mathcal{P}}_{i,T}
+\end{align*}
+
+Now calculate variances for transitory shocks (defining $\sigma^2_{Q_{i,T}}$ as the variance of transitory wage shocks in year $T$ for male or female, and $\sigma_{Q_{ij,T}}$ as the covariance of transitory wage shocks between men and women ($i \neq j$).
+\begin{align*}
+\text{Var}(\Delta \mathcal{Q}_{i,T}) &=  \frac{1}{a}\left(\sigma^2_{Q_{i,T}}  + \sigma^2_{Q_{i,T-2}}  \right)\\
+\text{Cov}(\Delta \mathcal{Q}_{i,T}, \Delta \mathcal{Q}_{i,T-2}) &= - \frac{1}{a} \sigma^2_{Q_{i,T-2}} \\
+\text{Cov}(\Delta \mathcal{Q}_{i,T},\Delta \mathcal{Q}_{j,T}) &=  \frac{1}{a}\left(\sigma_{Q_{ij,T}}  + \sigma_{Q_{ij,T-2}}  \right)\\
+\text{Cov}(\Delta \mathcal{Q}_{i,T}, \Delta \mathcal{Q}_{j,T-2}) &= - \frac{1}{a} \sigma_{Q_{ij,T-2}} \\
+\text{Var}(\overline{\Delta \mathcal{Q}}_{i,T}) &= \frac{1}{3}a\sigma^2_{Q_{i,T-1}} + (1-\frac{2}{3} a)\sigma^2_{Q_{i,T}} +\frac{1}{3}a\sigma^2_{Q_{i,T-3}} + (1-\frac{2}{3} a)\sigma^2_{Q_{i,T-2}}\\
+\text{Cov}(\overline{\Delta \mathcal{Q}}_{i,T},\overline{ \Delta \mathcal{Q}}_{i,T-2}) &=   -\frac{1}{3}a\sigma^2_{Q_{i,T-3}} - (1-\frac{2}{3} a)\sigma^2_{Q_{i,T-2}}\\
+\text{Cov}(\overline{\Delta \mathcal{Q}}_{i,T},\overline{\Delta \mathcal{Q}}_{j,T}) &= \frac{1}{3}a\sigma_{Q_{ij,T-1}} + (1-\frac{2}{3} a)\sigma_{Q_{ij,T}} +\frac{1}{3}a\sigma_{Q_{ij,T-3}} + (1-\frac{2}{3} a)\sigma_{Q_{ij,T-4}}\\
+\text{Cov}(\overline{\Delta \mathcal{Q}}_{i,T},\overline{ \Delta \mathcal{Q}}_{j,T-2}) &=   -\frac{1}{3}a\sigma_{Q_{ij,T-3}} - (1-\frac{2}{3} a)\sigma_{Q_{ij,T-2}}
+\end{align*}
+and (NEED TO ADD IN MALE FEMALE COVARIANCE, same as above)
+\begin{align*}
+\text{Cov}(\Delta \mathcal{Q}_{i,T},\overline{\Delta \mathcal{Q}}_{i,T}) &= \frac{1}{2}(\sigma^2_{Q_{i,T}} + \sigma^2_{Q_{i,T-2}}) \\
+\text{Cov}(\overline{\Delta \mathcal{Q}}_{i,T}, \Delta \mathcal{Q}_{i,T-2}) &= - \frac{1}{2} \sigma^2_{Q_{i,T-2}} \\
+\text{Cov}( \Delta \mathcal{Q}_{i,T}, \overline{\Delta \mathcal{Q}}_{i,T-2}) &=  - \frac{1}{2} \sigma^2_{Q_{i,T-2}}\\
+\end{align*}
+and for permanent shocks:
+\begin{align*}
+\text{Var}(\Delta \mathcal{P}_{i,T}) &=   \sigma^2_{P_{i,T}} +  \sigma^2_{P_{i,T-1}}\\
+\text{Cov}(\Delta \mathcal{P}_{i,T}, \Delta \mathcal{P}_{i,T-2}) &= 0 \\
+\text{Var}(\overline{\Delta \mathcal{P}}_{i,T}) &= \frac{1}{3} \sigma^2_{P_{i,T}} +  \sigma^2_{P_{i,T-1}} +\frac{1}{3} \sigma^2_{P_{i,T-2}}  \\
+\text{Cov}(\overline{\Delta \mathcal{P}}_{i,T},\overline{ \Delta \mathcal{P}}_{i,T-2}) &= \frac{1}{6} \sigma^2_{P_{i,T-2}} 
+\end{align*}
+and
+\begin{align*}
+\text{Cov}(\Delta \mathcal{P}_{i,T},\overline{\Delta \mathcal{P}}_{i,T}) &= \frac{1}{2} \sigma^2_{P_{i,T}} +  \sigma^2_{P_{i,T-1}}\\
+\text{Cov}(\overline{\Delta \mathcal{P}}_{i,T}, \Delta \mathcal{P}_{i,T-2}) &= \frac{1}{2} \sigma^2_{P_{i,T-2}} \\
+\text{Cov}( \Delta \mathcal{P}_{i,T}, \overline{\Delta \mathcal{P}}_{i,T-2}) &=  \frac{1}{2} \sigma^2_{P_{i,T-2}} \\
+\end{align*}
+\end{document}
