@@ -6,8 +6,8 @@ macro drop _all
 *** Store all do and provided data files in a single directory and write the path below
 *global do = "C:\Users\itaysap\Dropbox\family_labor_supply\bps_aer_replication_package"
 
-global do = "G:\Edmund\time-aggregation\Papers\CIFLS"
-*global do = "G:\Research\TimeAggRahul\Papers\CIFLS"
+global do = "R:\Research\TimeAggregationReplications\Papers\CIFLS"
+
 
 *** Give a path to a directory where you wish the output files to be stored. 
 *** These outputs include temporary dta files, but also the results for Tables 3, 4, 5 and 6
